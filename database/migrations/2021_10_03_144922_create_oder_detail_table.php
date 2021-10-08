@@ -14,9 +14,10 @@ class CreateOderDetailTable extends Migration
     public function up()
     {
         Schema::create('oder_detail', function (Blueprint $table) {
-            $table->increments('id')->unsigned();
-            $table->integer('order_id')->unsigned();
-            $table->integer('product_id')->unsigned();
+            $table->id();
+            $table->integer('order_id');
+            $table->integer('product_id');
+            $table->integer('attribute_id');
             $table->integer('amount');
             $table->float('price',15,3);
             $table->string('product_name',200);
