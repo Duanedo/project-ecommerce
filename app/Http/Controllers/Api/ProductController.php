@@ -55,7 +55,7 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(ProductUpdate $request, Product $product)
     {
         $product->update($request->all());
         return response()->json([
