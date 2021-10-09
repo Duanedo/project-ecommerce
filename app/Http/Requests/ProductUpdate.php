@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Contracts\Validation\Validator;
 
 class ProductUpdate extends FormRequest
 {
@@ -32,5 +34,13 @@ class ProductUpdate extends FormRequest
         return [
             'name.required' => 'tên không đc để trống',
         ];
+    }
+    public function failedValidation(Validator $validator)
+    {
+       throw new HttpResponseException(response()->json([
+         'success'   => false,
+         'message'   => 'Lỗi!',
+         'data'      => $validator->errors()
+       ]));
     }
 }

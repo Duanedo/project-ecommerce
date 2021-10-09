@@ -3,12 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Coupon;
 use Illuminate\Http\Request;
-use App\Models\Product;
-use App\Http\Requests\ProductStore;
-use App\Http\Requests\ProductUpdate;
 
-class ProductController extends Controller
+class CouponController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +15,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
-        return Product::all();
+        return Coupon::all();
     }
 
     /**
@@ -27,10 +24,10 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ProductStore $request)
+    public function store(Request $request)
     {
         $data = $request->all();
-        Product::create($data);
+        Coupon::create($data);
         return response()->json([
             'message'=>  'Thêm thành công',
             'data'=>$data
@@ -40,24 +37,24 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Coupon  $coupon
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show(Coupon $coupon)
     {
-        return $product;
+        return $coupon;
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Coupon  $coupon
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, Coupon $coupon)
     {
-        $product->update($request->all());
+        $coupon->update($request->all());
         return response()->json([
             'message'=>  'Sửa thành công',
             'data'=>$product
@@ -67,11 +64,11 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Coupon  $coupon
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy(Coupon $coupon)
     {
-        return $product->delete();
+        return $coupon->delete();
     }
 }
